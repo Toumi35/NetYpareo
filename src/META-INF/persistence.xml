@@ -6,6 +6,8 @@
     <class>ypareoEntities.Note</class>
     <class>ypareoEntities.Etudiant</class>
     <class>ypareoEntities.Professeur</class>
+    <class>ypareoEntities.Salle</class>
+    <class>ypareoEntities.Utilisateur</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/baseYPareo"/>
       <property name="javax.persistence.jdbc.password" value="test"/>

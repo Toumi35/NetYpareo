@@ -21,7 +21,7 @@ public class ProfDAO extends DAO<Prof>
         {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             String url = "jdbc:derby://localhost:1527/baseYpareo";// + this.baseYPareo + "";
-            Connection conn = DriverManager.getConnection(url, user, mdp);
+            //Connection conn = DriverManager.getConnection(url, user, mdp);
             String rqsql = "INSERT INTO APP.PROFESSEURS(nom) VALUES (?)";
             PreparedStatement instruction = (PreparedStatement) conn.prepareStatement(rqsql);
             instruction.setString(1, prof.getNomProf());

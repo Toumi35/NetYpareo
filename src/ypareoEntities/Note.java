@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ypareoEntities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -27,7 +20,6 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Note.findAll", query = "SELECT n FROM Note n"),
     @NamedQuery(name = "Note.findByIdNote", query = "SELECT n FROM Note n WHERE n.idNote = :idNote"),
-    @NamedQuery(name = "Note.findByDate", query = "SELECT n FROM Note n WHERE n.date = :date"),
     @NamedQuery(name = "Note.findByNote", query = "SELECT n FROM Note n WHERE n.note = :note")})
 public class Note implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -36,10 +28,6 @@ public class Note implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_NOTE", nullable = false)
     private Long idNote;
-    @Basic(optional = false)
-    @Column(name = "DATE", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date date;
     @Basic(optional = false)
     @Column(name = "NOTE", nullable = false)
     private float note;
@@ -51,9 +39,8 @@ public class Note implements Serializable {
         this.idNote = idNote;
     }
 
-    public Note(Long idNote, Date date, float note) {
+    public Note(Long idNote, float note) {
         this.idNote = idNote;
-        this.date = date;
         this.note = note;
     }
 
@@ -63,14 +50,6 @@ public class Note implements Serializable {
 
     public void setIdNote(Long idNote) {
         this.idNote = idNote;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public float getNote() {

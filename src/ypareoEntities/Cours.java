@@ -5,6 +5,7 @@
 package ypareoEntities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,10 +25,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "COURS")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cours.findAll", query = "SELECT c FROM Cours c"),
     @NamedQuery(name = "Cours.findByIdCours", query = "SELECT c FROM Cours c WHERE c.idCours = :idCours"),
-    @NamedQuery(name = "Cours.findByIntitule", query = "SELECT c FROM Cours c WHERE c.intitule = :intitule")})
+    @NamedQuery(name = "Cours.findByIntitule", query = "SELECT c FROM Cours c WHERE c.intitule = :intitule"),
+    @NamedQuery(name = "Cours.findByDateCours", query = "SELECT c FROM Cours c WHERE c.dateCours = :dateCours"),
+    @NamedQuery(name = "Cours.findByHeureCours", query = "SELECT c FROM Cours c WHERE c.heureCours = :heureCours")})
 public class Cours implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,6 +42,11 @@ public class Cours implements Serializable {
     @Basic(optional = false)
     @Column(name = "INTITULE", nullable = false, length = 100)
     private String intitule;
+    @Column(name = "DATE_COURS")
+    @Temporal(TemporalType.DATE)
+    private Date dateCours;
+    @Column(name = "HEURE_COURS", length = 10)
+    private String heureCours;
 
     public Cours() {
     }
@@ -62,6 +74,22 @@ public class Cours implements Serializable {
 
     public void setIntitule(String intitule) {
         this.intitule = intitule;
+    }
+
+    public Date getDateCours() {
+        return dateCours;
+    }
+
+    public void setDateCours(Date dateCours) {
+        this.dateCours = dateCours;
+    }
+
+    public String getHeureCours() {
+        return heureCours;
+    }
+
+    public void setHeureCours(String heureCours) {
+        this.heureCours = heureCours;
     }
 
     @Override

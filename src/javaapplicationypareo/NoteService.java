@@ -1,7 +1,6 @@
 package javaapplicationypareo;
 
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import ypareoEntities.Note;
@@ -19,10 +18,9 @@ public class NoteService
         this.em = em;
     }
 
-    public Note createNote(long idNote, int note, Date date)
+    public Note createNote(long idNote, int note)
     {
         Note n = new Note(idNote);
-        n.setDate(date);
         n.setNote(note);
         em.persist(n);
         return n;

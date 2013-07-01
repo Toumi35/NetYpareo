@@ -1,5 +1,6 @@
 package javaapplicationypareo;
 
+import java.sql.Date;
 import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -18,10 +19,12 @@ public class CoursService
         this.em = em;
     }
 
-    public Cours createCours(long idCours, String intitule)
+    public Cours createCours(long idCours, String intitule, Date date_cours, String horaire)
     {
         Cours c = new Cours(idCours);
         c.setIntitule(intitule);
+        c.setDateCours(date_cours);
+        c.setHeureCours(horaire);
         em.persist(c);
         return c;
     }

@@ -17,28 +17,89 @@ public class JavaApplicationYPareo
     {                
         JPAUtil jpa = new JPAUtil();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProfesseurService");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("...");
         EntityManager em = emf.createEntityManager();
-        ProfesseurService service = new ProfesseurService(em);
 
         em.getTransaction().begin();
-        Professeur p = service.createProfesseur(158, "test");
-//        Utilisateur u = service.createUtilisateur(158, "test");
-//        Cours c = service.createCours(158, "test");
-//        Note n = service.createNote(158, "test");        
-//        Salle s = service.createSalle(158, "test");
-//        Etudiant e = service.createEtudiant(158, "test");
-        em.getTransaction().commit();
-        System.out.println("Persisted " + p);
-
         
-        jpa.checkData("SELECT p FROM Professeur p");
-//        jpa.checkData("SELECT u FROM Utilisateur u");
-//        jpa.checkData("SELECT c FROM Cours c");
-//        jpa.checkData("SELECT n FROM Note n");
-//        jpa.checkData("SELECT s FROM Salle s");
-//        jpa.checkData("SELECT e FROM Etudiant e");
-
+        // ------ Professeur ------
+        Professeur prof1 = new Professeur();
+        Professeur prof2 = new Professeur();
+        
+        prof1.setNom("Richard King");
+        prof2.setNom("Alain Milone");
+        
+        em.persist(prof1);
+        em.persist(prof2);
+        
+        // ------ Etudiant ------
+        Etudiant etu1 = new Etudiant();
+        Etudiant etu2 = new Etudiant();
+        
+        etu1.setNom("JOURDAN");
+        etu1.setPrenom("Carole");
+        etu2.setNom("de BAGLION");
+        etu2.setPrenom("Alleaume");
+        
+        em.persist(etu1);
+        em.persist(etu2);
+        
+        // ------ Note ------
+        Note note1 = new Note();
+        Note note2 = new Note();
+        
+        note1.setNote(12);
+        note2.setNote(15);
+        
+        em.persist(note1);
+        em.persist(note2);
+        
+        em.getTransaction().commit();
+        
+        // ------ Salle ------
+        Salle sal1 = new Salle();
+        Salle sal2 = new Salle();
+        
+        sal1.setNom("Sakura");
+        sal2.setNom("Progress");
+        
+        em.persist(sal1);
+        em.persist(sal2);
+        
+        em.getTransaction().commit();
+        
+        // ------ Utilisateur ------
+        Utilisateur user1 = new Utilisateur();
+        Utilisateur user2 = new Utilisateur();
+        
+        user1.setIdentifiant("CJOURD");
+        user1.setMdp("000000");
+        user2.setIdentifiant("ADEBAG");
+        user2.setMdp("000000");
+        
+        em.persist(user1);
+        em.persist(user2);
+        
+        em.getTransaction().commit();
+        
+        // ------ Cours ------
+        Cours cours1 = new Cours();
+        Cours cours2 = new Cours();
+        
+        cours1.setIntitule("Java");
+        cours1.setDateCours(null);
+        cours1.setHeureCours("9h-17h");
+        cours2.setIntitule("Persistance");
+        cours2.setDateCours(null);
+        cours2.setHeureCours("9h-17h");
+        
+        em.persist(user1);
+        em.persist(user2);
+        
+        em.getTransaction().commit();
+        
+        // -------------------
+        
         em.close();
         emf.close();
     }

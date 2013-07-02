@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cours.findByIntitule", query = "SELECT c FROM Cours c WHERE c.intitule = :intitule"),
     @NamedQuery(name = "Cours.findByDateCours", query = "SELECT c FROM Cours c WHERE c.dateCours = :dateCours"),
     @NamedQuery(name = "Cours.findByHeureCours", query = "SELECT c FROM Cours c WHERE c.heureCours = :heureCours")})
-public class Cours implements Serializable {
+
+public class Cours implements Serializable
+{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,73 +50,87 @@ public class Cours implements Serializable {
     @Column(name = "HEURE_COURS", length = 10)
     private String heureCours;
 
-    public Cours() {
-    }
+    public Cours() { }
 
-    public Cours(Long idCours) {
+    public Cours(Long idCours)
+    {
         this.idCours = idCours;
     }
 
-    public Cours(Long idCours, String intitule) {
+    public Cours(Long idCours, String intitule)
+    {
         this.idCours = idCours;
         this.intitule = intitule;
     }
 
-    public Long getIdCours() {
+    public Long getIdCours()
+    {
         return idCours;
     }
 
-    public void setIdCours(Long idCours) {
+    public void setIdCours(Long idCours)
+    {
         this.idCours = idCours;
     }
 
-    public String getIntitule() {
+    public String getIntitule()
+    {
         return intitule;
     }
 
-    public void setIntitule(String intitule) {
+    public void setIntitule(String intitule)
+    {
         this.intitule = intitule;
     }
 
-    public Date getDateCours() {
+    public Date getDateCours()
+    {
         return dateCours;
     }
 
-    public void setDateCours(Date dateCours) {
+    public void setDateCours(Date dateCours)
+    {
         this.dateCours = dateCours;
     }
 
-    public String getHeureCours() {
+    public String getHeureCours()
+    {
         return heureCours;
     }
 
-    public void setHeureCours(String heureCours) {
+    public void setHeureCours(String heureCours)
+    {
         this.heureCours = heureCours;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 0;
         hash += (idCours != null ? idCours.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object object)
+    {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cours)) {
+        if (!(object instanceof Cours))
+        {
             return false;
         }
         Cours other = (Cours) object;
-        if ((this.idCours == null && other.idCours != null) || (this.idCours != null && !this.idCours.equals(other.idCours))) {
+        if ((this.idCours == null && other.idCours != null) || (this.idCours != null && !this.idCours.equals(other.idCours)))
+        {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
-        return "ypareoEntities.Cours[ idCours=" + idCours + " ]";
+    public String toString()
+    {
+        //return "ypareoEntities.Cours[ idCours=" + idCours + " ]";
+        return "Cours : " + intitule + " [" + dateCours + " - " + heureCours + "]";
     }
-    
 }

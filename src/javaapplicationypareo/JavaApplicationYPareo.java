@@ -15,9 +15,10 @@ public class JavaApplicationYPareo
 {
     public static void main(String[] args) throws Exception
     {                
-        JPAUtil jpa = new JPAUtil();
+        //JPAUtil jpa = new JPAUtil();
+        //DriveManager dm = new DriveManager();
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("...");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JavaApplicationYPareoPU");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();

@@ -45,7 +45,6 @@ public class JFrameListProf extends javax.swing.JFrame
         tableProfesseur = new javax.swing.JTable();
         jButtonAnnuleSpectacle = new javax.swing.JButton();
         jButtonAjoutSpectacle = new javax.swing.JButton();
-        jButtonAccueill = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFichier = new javax.swing.JMenu();
@@ -96,12 +95,6 @@ public class JFrameListProf extends javax.swing.JFrame
             }
         });
 
-        jButtonAccueill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAccueil(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Liste des professeurs");
 
@@ -132,36 +125,31 @@ public class JFrameListProf extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 239, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAjoutSpectacle)
-                            .addComponent(jButtonAnnuleSpectacle)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAccueill, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(242, 242, 242))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonAjoutSpectacle)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAnnuleSpectacle)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonAccueill, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAjoutSpectacle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAnnuleSpectacle)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAnnuleSpectacle)
+                    .addComponent(jButtonAjoutSpectacle))
                 .addContainerGap())
         );
 
@@ -187,12 +175,6 @@ public class JFrameListProf extends javax.swing.JFrame
 //        addProf.setVisible(true);
 //        this.dispose();
     }//GEN-LAST:event_btnAdd
-
-    private void btnAccueil(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccueil
-        interfaces.JFrameAccueil accueil = new interfaces.JFrameAccueil();
-        accueil.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAccueil
 
     private void jMenuItemQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuitterActionPerformed
         interfaces.JFrameAccueil accueil = new interfaces.JFrameAccueil();
@@ -240,7 +222,6 @@ public class JFrameListProf extends javax.swing.JFrame
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager JavaApplicationYPareoPUEntityManager;
-    private javax.swing.JButton jButtonAccueill;
     private javax.swing.JButton jButtonAjoutSpectacle;
     private javax.swing.JButton jButtonAnnuleSpectacle;
     private javax.swing.JLabel jLabel1;

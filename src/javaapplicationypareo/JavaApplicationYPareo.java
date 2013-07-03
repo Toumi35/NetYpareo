@@ -1,6 +1,9 @@
 
 package javaapplicationypareo;
 
+import java.util.Collection;
+import java.util.Set;
+import javax.jdo.Extent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -8,6 +11,9 @@ import ypareoEntities.Cours;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
+import javax.jdo.Transaction;
+import ypareoEntities.Professeur;
 
 public class JavaApplicationYPareo
 {
@@ -20,14 +26,10 @@ public class JavaApplicationYPareo
         System.out.println("~        JDO HERE WE GO!!1        ~");
         System.out.println("===================================");
 
-        createCoursesAndProfs(pmf);
-
+        createCoursAndProfs(pmf);
         findAllProfs(pmf);
-
         queryProfs(pmf);
-
         findAllProfs(pmf);
-
         deleteEverything(pmf);
 
         System.out.println("===================================");
@@ -49,7 +51,7 @@ public class JavaApplicationYPareo
 
             numberInstancesDeleted = 0;
             System.out.println("Deleting all profs from persistence");
-            q = pm.newQuery(Prof.class);
+            q = pm.newQuery(Professeur.class);
             numberInstancesDeleted = q.deletePersistentAll();
             System.out.println("Deleted " + numberInstancesDeleted + " profs");
 
@@ -77,16 +79,16 @@ public class JavaApplicationYPareo
         {
             tx.begin();
             System.out.println("Executing Query for Profs with age < 30");
-            Extent<Prof> e = pm.getExtent(Prof.class, true);
+            Extent<Professeur> e = pm.getExtent(Professeur.class, true);
             Query q = pm.newQuery(e, "age < 30");
             q.setOrdering("age ascending");
-            Collection<Prof> c = (Collection<Prof>) q.execute();
+            Collection<Professeur> c = (Collection<Professeur>) q.execute();
 
-            for(Prof p : c)
+            for(Professeur p : c)
             {
                 System.out.println("* " + p);
                 //e.g. of update
-                p.setName("young " + p.getName());
+                p.setNom("young " + p.getNom());
             }
             tx.commit();
         }
@@ -101,7 +103,7 @@ public class JavaApplicationYPareo
         System.out.println("");
     }
 
-    private static void createCoursesAndProfs(PersistenceManagerFactory pmf)
+    private static void createCoursAndProfs(PersistenceManagerFactory pmf)
     {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
@@ -110,24 +112,22 @@ public class JavaApplicationYPareo
             tx.begin();
             System.out.println("Creating some courses and profs");
 
-            Cours c1 = new Cours("Persistance", "Persistance Cours avec Richard");
-            Cours c2 = new Cours("XML", "XML cours and stuff");
-            Cours c3 = new Cours("Maths", "2+2=?");
+            Cours c1 = new Cours(1, "Persistance - Persistance Cours avec Richard");
+            Cours c2 = new Cours(2, "XML -XML cours and stuff");
+            Cours c3 = new Cours(3, "Maths - 2+2=?");
 
-            Prof p1 = new Prof();
-            p1.setName("Richard");
-            p1.setAge(22);
+            Professeur p1 = new Professeur();
+            p1.setNom("Richard");
 
-            Prof p2 = new Prof();
-            p2.setName("Philippe");
-            p2.setAge(44);
+            Professeur p2 = new Professeur();
+            p2.setNom("Philippe");
 
             System.out.println("Add courses to prof!");
-            Set<Cours> courses = p1.getCourses();
-            courses.add(c1);
-            courses.add(c2);
+            Set<Cours> cours = p1.getClass();
+            cours.add(c1);
+            cours.add(c2);
 
-            p2.getCourses().add(c3);
+            p2.getClass().add(c3);
 
             pm.makePersistent(p1);
             pm.makePersistent(p2);
@@ -157,9 +157,9 @@ public class JavaApplicationYPareo
         {
             tx.begin();
             System.out.println("Retrieving Extent for Profs");
-            Extent<Prof> e = pm.getExtent(Prof.class, true);
+            Extent<Professeur> e = pm.getExtent(Professeur.class, true);
 
-            for(Prof p : e)
+            for(Professeur p : e)
             {
                 System.out.println("* " + p);
             }

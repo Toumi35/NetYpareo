@@ -5,7 +5,10 @@
 package ypareoEntities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.jdo.annotations.Persistent;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,6 +53,9 @@ public class Cours implements Serializable
     private Date dateCours;
     @Column(name = "HEURE_COURS", length = 10)
     private String heureCours;
+    
+    @Persistent
+    Professeur prof = null;
 
     public Cours() { }
 
@@ -132,5 +139,18 @@ public class Cours implements Serializable
     {
         //return "ypareoEntities.Cours[ idCours=" + idCours + " ]";
         return "Cours : " + intitule + " [" + dateCours + " - " + heureCours + "]";
+    }
+    
+    @OneToMany(mappedBy = "cours")
+    private List<Cours> courses = new ArrayList<Cours>();
+    
+    public List<Cours> getCourses()
+    {
+        return courses;
+    }
+
+    public void setCourses(List<Cours> courses)
+    {
+        this.courses = courses;
     }
 }

@@ -5,6 +5,8 @@
 package ypareoEntities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -40,66 +43,91 @@ public class Etudiant implements Serializable {
     @Column(name = "PRENOM", nullable = false, length = 100)
     private String prenom;
 
-    public Etudiant() {
+    public Etudiant()
+    {
     }
 
-    public Etudiant(Long idEtudiant) {
+    public Etudiant(Long idEtudiant)
+    {
         this.idEtudiant = idEtudiant;
     }
 
-    public Etudiant(Long idEtudiant, String nom, String prenom) {
+    public Etudiant(Long idEtudiant, String nom, String prenom)
+    {
         this.idEtudiant = idEtudiant;
         this.nom = nom;
         this.prenom = prenom;
     }
 
-    public Long getIdEtudiant() {
+    public Long getIdEtudiant()
+    {
         return idEtudiant;
     }
 
-    public void setIdEtudiant(Long idEtudiant) {
+    public void setIdEtudiant(Long idEtudiant)
+    {
         this.idEtudiant = idEtudiant;
     }
 
-    public String getNom() {
+    public String getNom()
+    {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(String nom)
+    {
         this.nom = nom;
     }
 
-    public String getPrenom() {
+    public String getPrenom()
+    {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
+    public void setPrenom(String prenom)
+    {
         this.prenom = prenom;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 0;
         hash += (idEtudiant != null ? idEtudiant.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Etudiant)) {
+    public boolean equals(Object object)
+    {
+        if (!(object instanceof Etudiant))
+        {
             return false;
         }
         Etudiant other = (Etudiant) object;
-        if ((this.idEtudiant == null && other.idEtudiant != null) || (this.idEtudiant != null && !this.idEtudiant.equals(other.idEtudiant))) {
+        if ((this.idEtudiant == null && other.idEtudiant != null) || (this.idEtudiant != null && !this.idEtudiant.equals(other.idEtudiant)))
+        {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "ypareoEntities.Etudiant[ idEtudiant=" + idEtudiant + " ]";
     }
     
+    @OneToMany(mappedBy = "etudiant")
+    private List<Etudiant> etudiants = new ArrayList<Etudiant>();
+    
+    public List<Etudiant> getEtudiants()
+    {
+        return etudiants;
+    }
+
+    public void setEtudiants(List<Etudiant> etudiants)
+    {
+        this.etudiants = etudiants;
+    }
 }

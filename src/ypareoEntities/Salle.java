@@ -1,12 +1,15 @@
 package ypareoEntities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -87,5 +90,18 @@ public class Salle implements Serializable {
     public String toString()
     {
         return "ypareoEntities.Salle[ idSalle=" + idSalle + " ]";
+    }
+    
+    @OneToMany(mappedBy = "salle")
+    private List<Salle> salles = new ArrayList<Salle>();
+    
+    public List<Salle> getSalles()
+    {
+        return salles;
+    }
+
+    public void setSalles(List<Salle> salles)
+    {
+        this.salles = salles;
     }
 }

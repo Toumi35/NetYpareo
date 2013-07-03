@@ -1,12 +1,15 @@
 package ypareoEntities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -103,5 +106,18 @@ public class Utilisateur implements Serializable {
     public String toString()
     {
         return "ypareoEntities.Utilisateur[ idUser=" + idUser + " ]";
+    }
+    
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+
+    public List<Utilisateur> getUtilisateurs()
+    {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(List<Utilisateur> utilisateurs)
+    {
+        this.utilisateurs = utilisateurs;
     }
 }

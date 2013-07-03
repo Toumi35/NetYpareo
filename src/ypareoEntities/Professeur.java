@@ -5,6 +5,11 @@
 package ypareoEntities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.jdo.annotations.Persistent;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,6 +42,19 @@ public class Professeur implements Serializable
     @Basic(optional = false)
     @Column(name = "NOM", nullable = false, length = 100)
     private String nom;
+    
+    @Persistent(mappedBy = "professeur")
+    Set<Cours> courses = new HashSet<Cours>();
+    
+    public Set<Cours> getCourses()
+    {
+        return courses;
+    }
+
+    public void setCourses(Set<Cours> courses)
+    {
+        this.courses = courses;
+    }
 
     public Professeur(){ }
 
@@ -100,4 +119,16 @@ public class Professeur implements Serializable
         return "ypareoEntities.Professeur[ idProfesseur=" + idProfesseur + " ]";
     }
     
+    @OneToMany(mappedBy = "professeur")
+    private List<Professeur> professeurs = new ArrayList<Professeur>();
+    
+    public List<Professeur> getProfesseurs()
+    {
+        return professeurs;
+    }
+
+    public void setProfesseurs(List<Professeur> professeurs)
+    {
+        this.professeurs = professeurs;
+    }
 }

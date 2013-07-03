@@ -26,7 +26,7 @@ public class JavaApplicationYPareo
         System.out.println("~        JDO HERE WE GO!!1        ~");
         System.out.println("===================================");
 
-        createCoursAndProfs(pmf);
+        createCoursesAndProfs(pmf);
         findAllProfs(pmf);
         queryProfs(pmf);
         findAllProfs(pmf);
@@ -103,7 +103,7 @@ public class JavaApplicationYPareo
         System.out.println("");
     }
 
-    private static void createCoursAndProfs(PersistenceManagerFactory pmf)
+    private static void createCoursesAndProfs(PersistenceManagerFactory pmf)
     {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
@@ -112,10 +112,22 @@ public class JavaApplicationYPareo
             tx.begin();
             System.out.println("Creating some courses and profs");
 
-            Cours c1 = new Cours(1, "Persistance - Persistance Cours avec Richard");
-            Cours c2 = new Cours(2, "XML -XML cours and stuff");
-            Cours c3 = new Cours(3, "Maths - 2+2=?");
-
+            Cours c1 = new Cours();//1, "Persistance - Persistance Cours avec Richard");
+            Cours c2 = new Cours();//2, "XML -XML cours and stuff");
+            Cours c3 = new Cours();//3, "Maths - 2+2=?");
+            
+            c1.setIntitule("Persistance - Persistance Cours avec Richard");
+            c1.setHeureCours("9h - 12h30");
+            c1.setDateCours(null);
+            
+            c2.setIntitule("XML -XML cours and stuff");
+            c2.setHeureCours("13h30 - 17h");
+            c2.setDateCours(null);
+            
+            c3.setIntitule("Maths - 2+2=?");
+            c3.setHeureCours("9h - 17h");
+            c3.setDateCours(null);
+            
             Professeur p1 = new Professeur();
             p1.setNom("Richard");
 
@@ -123,11 +135,11 @@ public class JavaApplicationYPareo
             p2.setNom("Philippe");
 
             System.out.println("Add courses to prof!");
-            Set<Cours> cours = p1.getClass();
-            cours.add(c1);
-            cours.add(c2);
+            Set<Cours> courses = p1.getCourses();
+            courses.add(c1);
+            courses.add(c2);
 
-            p2.getClass().add(c3);
+            p2.getCourses().add(c3);
 
             pm.makePersistent(p1);
             pm.makePersistent(p2);

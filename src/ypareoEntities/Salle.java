@@ -92,7 +92,7 @@ public class Salle implements Serializable {
         return "ypareoEntities.Salle[ idSalle=" + idSalle + " ]";
     }
     
-    @OneToMany(mappedBy = "salle")
+    @OneToMany
     private List<Salle> salles = new ArrayList<Salle>();
     
     public List<Salle> getSalles()

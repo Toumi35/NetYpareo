@@ -88,7 +88,7 @@ public class Note implements Serializable {
         return "ypareoEntities.Note[ idNote=" + idNote + " ]";
     }
     
-    @OneToMany(mappedBy = "note")
+    @OneToMany
     private List<Note> notes = new ArrayList<Note>();
     
     public List<Note> getNotes()
